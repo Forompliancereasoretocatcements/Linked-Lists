@@ -1,0 +1,35 @@
+class LinkedListNode:
+    def __init__(self, value, prevnode = None, nextnode = None):
+        self.value = value
+        self.prevnode = prevnode
+        self.nextnode = nextnode
+
+def make_singly_linked_list(nodes):
+    for i in range(len(nodes) - 1):
+        nodes[i].nextnode = nodes[i + 1]
+
+def print_singly_linked_list(head):
+    print(head.value, end = '')
+    if head.nextnode is not None:
+        print(' -> ', end = '')
+        print_singly_linked_list(head.nextnode)
+
+def make_loop_in_linked_list(head, node = None):
+    if node is None:
+        node = head
+    if node.nextnode is None:
+        node.nextnode = head
+    else:
+        make_loop_in_linked_list(head, node.nextnode)
+
+def remove_node(head, n):
+    node = head
+    x = 1
+    while node.nextnode is not None:
+        x += 1
+        node = node.nextnode
+    node = head
+    for i in range(x - n - 1):
+        node = node.nextnode
+    if x - n - 1 >= 0:
+        node.nextnode = node.nextnode.nextnode
