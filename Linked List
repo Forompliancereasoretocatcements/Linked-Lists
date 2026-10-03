@@ -29,7 +29,8 @@ def remove_node(head, n):
         x += 1
         node = node.nextnode
     node = head
-    for i in range(x - n - 1):
-        node = node.nextnode
+    if x - n - 1 >= 0:
+        for i in range(x - n - 1):
+            node = node.nextnode
     if x - n - 1 >= 0:
         node.nextnode = node.nextnode.nextnode
